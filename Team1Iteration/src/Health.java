@@ -17,7 +17,7 @@ public class Health {
 	public void promptMedicationSurvey() {
 	    // Prompt user with survey/questionnaire
 	    // Save information in medications HashMap
-	    // Assume input validation has been done outside of this method
+	  
 	    
 	    System.out.println("Do you have any medications to take?");
 	    String answer = System.console().readLine().toLowerCase();
