@@ -8,8 +8,8 @@ public class Health {
 	private boolean newWeek = false;
 	private HashMap<String, Integer> medications; // medication name -> number to take per day
 	
-	public void Meds() {
-	    medications = new HashMap<>();
+	public Health() {
+	    this.medications = new HashMap<String, Integer>();
 	        
 	}
 	
@@ -37,29 +37,52 @@ public class Health {
 	    if( firstLogin == true && response.equals("yes")) {
            
             System.out.println("Please enter the number of medications you take on each day of the week:");
+            System.out.println("Monday: ");
             medications.put("Monday", scnr.nextInt());
+            System.out.println("Tuesday: ");
             medications.put("Tuesday", scnr.nextInt());
+            System.out.println("Wednesday: ");
             medications.put("Wednesday", scnr.nextInt());
+            System.out.println("Thursday: ");
             medications.put("Thursday", scnr.nextInt());
+            System.out.println("Friday: ");
             medications.put("Friday", scnr.nextInt());
+            System.out.println("Saturday: ");
             medications.put("Saturday", scnr.nextInt());
+            System.out.println("Sunday: ");
             medications.put("Sunday", scnr.nextInt());
          // Set firstLogin to false to avoid repeating this block in future calls
+            System.out.println("Setting Reminders..");
+            remindMedication();
             firstLogin = false;
+            System.out.println("Reminders set, Exiting...");
+            System.exit(0);
 	    }  else if (newWeek == true) {
 
         // Prompt for number of assignments due each day
-	    	 System.out.println("Please enter the number of medications you take on each day of this week:");
-	            medications.put("Monday", scnr.nextInt());
-	            medications.put("Tuesday", scnr.nextInt());
-	            medications.put("Wednesday", scnr.nextInt());
-	            medications.put("Thursday", scnr.nextInt());
-	            medications.put("Friday", scnr.nextInt());
-	            medications.put("Saturday", scnr.nextInt());
-	            medications.put("Sunday", scnr.nextInt());
+	    	System.out.println("Please enter the number of medications you take on each day of this week:");
+	    	System.out.println("Monday: ");
+            medications.put("Monday", scnr.nextInt());
+            System.out.println("Tuesday: ");
+            medications.put("Tuesday", scnr.nextInt());
+            System.out.println("Wednesday: ");
+            medications.put("Wednesday", scnr.nextInt());
+            System.out.println("Thursday: ");
+            medications.put("Thursday", scnr.nextInt());
+            System.out.println("Friday: ");
+            medications.put("Friday", scnr.nextInt());
+            System.out.println("Saturday: ");
+            medications.put("Saturday", scnr.nextInt());
+            System.out.println("Sunday: ");
+            medications.put("Sunday", scnr.nextInt());
+            System.out.println("Setting Reminders..");
+            remindMedication();
+            newWeek = false;
+            System.out.println("Reminders set, Exiting...");
+            System.exit(0);
 
         // Set newWeek to false to avoid repeating this block in future calls
-        newWeek = false;
+        
     }
 
         // Close scanner

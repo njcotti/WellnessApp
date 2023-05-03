@@ -12,16 +12,16 @@ import java.util.HashMap;
      private boolean firstLogin = false;
      private boolean newWeek = false;
     
-     public void AcademicS() {
+     public Assignments() {
         // Constructor initializes the HashMap to hold data for each day of the week
-         numAssignmentsDue = new HashMap<String, Integer>();
+         this.numAssignmentsDue = new HashMap<String, Integer>();
     }
 
      public void takeSurvey() {
-         Scanner sc = new Scanner(System.in);
+         Scanner scnr = new Scanner(System.in);
          if(firstLogin == false) {
              System.out.println("Is this your first time logging in?");
-             String newbie = sc.nextLine().toLowerCase();
+             String newbie = scnr.nextLine().toLowerCase();
              if (newbie.equals("yes")) {
                 firstLogin = true;
              } else if(newbie.equals("no")) {
@@ -32,27 +32,37 @@ import java.util.HashMap;
         if( firstLogin == true) {
             // Prompt for number of classes
             System.out.print("How many classes are you taking this semester? ");
-            numClasses = sc.nextInt();
-            sc.nextLine();
+            numClasses = scnr.nextInt();
+            scnr.nextLine();
 
             // Prompt for number of assignments due each day
             System.out.println("Please enter the number of assignments due on each day of the week:");
-            numAssignmentsDue.put("Monday", sc.nextInt());
-            numAssignmentsDue.put("Tuesday", sc.nextInt());
-            numAssignmentsDue.put("Wednesday", sc.nextInt());
-            numAssignmentsDue.put("Thursday", sc.nextInt());
-            numAssignmentsDue.put("Friday", sc.nextInt());
+            System.out.println("Monday: ");
+            numAssignmentsDue.put("Monday", scnr.nextInt());
+            System.out.println("Tuesday: ");
+            numAssignmentsDue.put("Tuesday", scnr.nextInt());
+            System.out.println("Wednesday: ");
+            numAssignmentsDue.put("Wednesday", scnr.nextInt());
+            System.out.println("Thursday: ");
+            numAssignmentsDue.put("Thursday", scnr.nextInt());
+            System.out.println("Friday: ");
+            numAssignmentsDue.put("Friday", scnr.nextInt());
 
             // Prompt for weekend assignments
             System.out.print("Do you have any assignments due on the weekend? (yes or no) ");
-            String response = sc.next().toLowerCase();
+            String response = scnr.next().toLowerCase();
             if(response.equals("yes")) {
                 hasWeekendAssignments = true;
                 System.out.println("Please enter the number of assignments due on each day of the weekend:");
-                numAssignmentsDue.put("Saturday", sc.nextInt());
-                numAssignmentsDue.put("Sunday", sc.nextInt());
+                System.out.println("Saturday: ");
+                numAssignmentsDue.put("Saturday", scnr.nextInt());
+                System.out.println("Sunday: ");
+                numAssignmentsDue.put("Sunday", scnr.nextInt());
             } else if (response.equals("no")) {
                 hasWeekendAssignments = false;
+                System.out.println("Lucky you! Have fun and be safe!");
+                System.out.println("Exiting..");
+                System.exit(0);
             }
 
             // Set firstLogin to false to avoid repeating this block in future calls
@@ -62,22 +72,30 @@ import java.util.HashMap;
 
             // Prompt for number of assignments due each day
             System.out.println("Please enter the number of assignments due on each day of the week:");
-            numAssignmentsDue.put("Monday", sc.nextInt());
-            numAssignmentsDue.put("Tuesday", sc.nextInt());
-            numAssignmentsDue.put("Wednesday", sc.nextInt());
-            numAssignmentsDue.put("Thursday", sc.nextInt());
-            numAssignmentsDue.put("Friday", sc.nextInt());
+            System.out.println("Monday: ");
+            numAssignmentsDue.put("Monday", scnr.nextInt());
+            System.out.println("Tuesday: ");
+            numAssignmentsDue.put("Tuesday", scnr.nextInt());
+            System.out.println("Wednesday: ");
+            numAssignmentsDue.put("Wednesday", scnr.nextInt());
+            System.out.println("Thursday: ");
+            numAssignmentsDue.put("Thursday", scnr.nextInt());
+            System.out.println("Friday: ");
+            numAssignmentsDue.put("Friday", scnr.nextInt());
 
             // Prompt for weekend assignments
             System.out.print("Do you have any assignments due on the weekend? (yes or no) ");
-            String response = sc.next().toLowerCase();
+            String response = scnr.next().toLowerCase();
             if(response.equals("yes")) {
                 hasWeekendAssignments = true;
                 System.out.println("Please enter the number of assignments due on each day of the weekend:");
-                numAssignmentsDue.put("Saturday", sc.nextInt());
-                numAssignmentsDue.put("Sunday", sc.nextInt());
+                System.out.println("Saturday: ");
+                numAssignmentsDue.put("Saturday", scnr.nextInt());
+                System.out.println("Sunday: ");
+                numAssignmentsDue.put("Sunday", scnr.nextInt());
             } else if (response.equals("no")) {
                 hasWeekendAssignments = false;
+                
             }
 
             // Set newWeek to false to avoid repeating this block in future calls
@@ -85,12 +103,14 @@ import java.util.HashMap;
         }
 
             // Close scanner
-            sc.close();
+        scnr.close();
         }
 	        
       
 	    
-	    // Getters and setters for private fields
+	    
+
+		// Getters and setters for private fields
 	    public int getNumClasses() {
 	        return numClasses;
 	    }
@@ -120,9 +140,8 @@ import java.util.HashMap;
 	    public void trackClassesTaken() {
 	        System.out.println("You are currently taking " + numClasses + " classes.");
 	    }
-	    
-	    
-	
+
+		
 
 }
 

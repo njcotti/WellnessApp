@@ -55,9 +55,9 @@ public class HygieneToDo {
 	                    toDoList.printTasks();
 	                    break;
 	                case 4:
-	                    System.out.println("Bye Bye ToDo");
+	                    System.out.println("Exiting...");
 	                    scnr.close();
-	                    System.exit(0);
+	                    //System.exit(0);
 	                    break;
 	                default:
 	                    System.out.println("Invalid choice: " + choice);

@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class AcademicHelp {
 	
-	public static void helpNeeded() {
+	public void helpNeeded() {
 		int phoneNumber = 321-674-7110;
 		Scanner scnr = new Scanner(System.in);
 		System.out.println("Do you need academic help/advice with a specific subject?");
