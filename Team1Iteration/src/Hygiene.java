@@ -8,18 +8,7 @@ public class Hygiene {
     private boolean brushTeethReminderEnabled;
     private boolean brushHairReminderEnabled;
 
-    public Hygiene(boolean brushTeethReminderEnabled, boolean brushHairReminderEnabled) {
-        this.brushTeethReminderEnabled = brushTeethReminderEnabled;
-        this.brushHairReminderEnabled = brushHairReminderEnabled;
-    }
-
-    public void setBrushTeethReminderEnabled(boolean brushTeethReminderEnabled) {
-        this.brushTeethReminderEnabled = brushTeethReminderEnabled;
-    }
-
-    public void setBrushHairReminderEnabled(boolean brushHairReminderEnabled) {
-        this.brushHairReminderEnabled = brushHairReminderEnabled;
-    }
+   
 
     public void startReminders() {
         Timer timer = new Timer();
@@ -37,7 +26,13 @@ public class Hygiene {
                 }
             }, getNextBrushHairReminderTime(), 24 * 60 * 60 * 1000);
         }
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
+    
 
     private Date getNextBrushTeethReminderTime() {
         Date now = new Date();

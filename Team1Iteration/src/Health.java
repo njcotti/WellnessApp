@@ -1,8 +1,11 @@
 
+import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class Health {
-
+	private boolean firstLogin = false;
+	private boolean newWeek = false;
 	private HashMap<String, Integer> medications; // medication name -> number to take per day
 	
 	public void Meds() {
@@ -14,64 +17,73 @@ public class Health {
 	    medications.put(name, numPerDay);
 	}
 	
-	public void promptMedicationSurvey() {
+	public void medicationSurvey() {
 	    // Prompt user with survey/questionnaire
 	    // Save information in medications HashMap
-	  
+		 Scanner scnr = new Scanner(System.in);
+         if(firstLogin == false) {
+             System.out.println("Is this your first time logging in?");
+             String newbie = scnr.nextLine().toLowerCase();
+             if (newbie.equals("yes")) {
+                firstLogin = true;
+             } else if(newbie.equals("no")) {
+                newWeek = true;
+             }
+        }
 	    
 	    System.out.println("Do you have any medications to take?");
-	    String answer = System.console().readLine().toLowerCase();
+	    String response = scnr.nextLine().toLowerCase();
 	    
-	    if (answer.equals("yes")) {
-	        System.out.println("How many for the week of 1/31?");
-	        int numTotal = Integer.parseInt(System.console().readLine());
-	        
-	        System.out.println("How many to take on Monday?");
-	        int numMonday = Integer.parseInt(System.console().readLine());
-	        
-	        System.out.println("How many to take on Tuesday?");
-	        int numTuesday = Integer.parseInt(System.console().readLine());
-	        
-	        System.out.println("How many to take on Wednesday?");
-	        int numWednesday = Integer.parseInt(System.console().readLine());
-	        
-	        System.out.println("How many to take on Thursday?");
-	        int numThursday = Integer.parseInt(System.console().readLine());
-	        
-	        System.out.println("How many to take on Friday?");
-	        int numFriday = Integer.parseInt(System.console().readLine());
-	        
-	        System.out.println("Do you have to take them on the weekend as well?");
-	        String weekendAnswer = System.console().readLine().toLowerCase();
-	        int numWeekend = 0;
-	        
-	        if (weekendAnswer.equals("yes")) {
-	            System.out.println("How many to take on Saturday?");
-	            int numSaturday = Integer.parseInt(System.console().readLine());
-	            
-	            System.out.println("How many to take on Sunday?");
-	            int numSunday = Integer.parseInt(System.console().readLine());
-	            
-	            numWeekend = numSaturday + numSunday;
-	        }
-	        
-	        int[] numPerDay = {numMonday, numTuesday, numWednesday, numThursday, numFriday, numWeekend, numWeekend};
-	        String[] daysOfWeek = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
-	        
-	        for (int i = 0; i < daysOfWeek.length; i++) {
-	            medications.put(daysOfWeek[i], numPerDay[i]);
-	        }
-	        
-	        int totalNumPerDay = numMonday + numTuesday + numWednesday + numThursday + numFriday + numWeekend + numWeekend;
-	        System.out.println("You need to take a total of " + totalNumPerDay + " medications per day.");
-	    }
+	    if( firstLogin == true && response.equals("yes")) {
+           
+            System.out.println("Please enter the number of medications you take on each day of the week:");
+            medications.put("Monday", scnr.nextInt());
+            medications.put("Tuesday", scnr.nextInt());
+            medications.put("Wednesday", scnr.nextInt());
+            medications.put("Thursday", scnr.nextInt());
+            medications.put("Friday", scnr.nextInt());
+            medications.put("Saturday", scnr.nextInt());
+            medications.put("Sunday", scnr.nextInt());
+         // Set firstLogin to false to avoid repeating this block in future calls
+            firstLogin = false;
+	    }  else if (newWeek == true) {
+
+        // Prompt for number of assignments due each day
+	    	 System.out.println("Please enter the number of medications you take on each day of this week:");
+	            medications.put("Monday", scnr.nextInt());
+	            medications.put("Tuesday", scnr.nextInt());
+	            medications.put("Wednesday", scnr.nextInt());
+	            medications.put("Thursday", scnr.nextInt());
+	            medications.put("Friday", scnr.nextInt());
+	            medications.put("Saturday", scnr.nextInt());
+	            medications.put("Sunday", scnr.nextInt());
+
+        // Set newWeek to false to avoid repeating this block in future calls
+        newWeek = false;
+    }
+
+        // Close scanner
+        scnr.close();
+    
 	}
 	
-    
+	 public HashMap<String, Integer> medications() {
+	        return medications;
+	    }
 
-    public void remindMedication(String medicationName) {
-        // send notification or reminder to take the medication
-        System.out.println("Reminder: Take " + medicationName);
+    public void remindMedication() {
+        // send notification or reminder to take their medication
+    	LocalDate today = LocalDate.now();
+        int count = 0;
+
+        // Get the number of assignments due today from the HashMap
+        int takeMeds = medications().get(today.getDayOfWeek());
+
+        if (takeMeds > 0) {
+            System.out.println("You have " + takeMeds + " assignments due today.");
+        } else {
+            System.out.println("You don't have any assignments due today.");
+        }
     }
 
 
