@@ -13,13 +13,18 @@ public class Social {
 
     public void addSocialClub(String club) {
         socialClubs.add(club);
-        setClubNotification(club);
+        
     }
 
-    public void setClubNotification(String club) {
-        // logic to set notification for social club
-        // notification we can set based on the meeting schedule of the club
-    	// or if user pre-adds dates they want to remember
+    public void viewSocialClubs() {
+    	Scanner scnr = new Scanner(System.in);
+		System.out.println("Do you want to know what events are happening on campus this week?");
+		String response = scnr.nextLine().toLowerCase();
+		if(response.equals("yes")) {
+			System.out.println("Here is the website for the Engage system");
+			System.out.println("https://floridatech.campuslabs.com/engage/");
+			System.out.println("Follow the seperate links on the page to search and attend events! " );
+		}
     }
 
     public List<String> getSocialClubs() {
